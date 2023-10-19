@@ -1,0 +1,11 @@
+name: Teste_ci_lint_prettier_1
+on: [pull_request]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+     - uses: actions/checkout@v4  
+     - run: npm ci
+     - run: npm run lint
+     - run: npm run format
+     - run: npm run test
