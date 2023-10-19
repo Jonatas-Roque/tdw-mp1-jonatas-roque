@@ -1,0 +1,12 @@
+name: Deploy
+
+on:
+  repository_dispatch:
+        types: [contentful.deploy]
+
+jobs: 
+    Explore-GitHub-Actions:
+        runs-on: ubuntu-latest
+        steps:
+         - uses: actions/checkout@v4  
+         - run: echo "Conteudos atualizados/alterados"
