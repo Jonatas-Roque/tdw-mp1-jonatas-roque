@@ -7,8 +7,7 @@ jobs:
      - uses: actions/checkout@v4
 
      - name: Contentful
-       run: |
-          echo "${{ secrets.CONTENTFUL }}" > .env
+       run: echo "${{ secrets.CONTENTFUL }}" > .env
      
      - name: Ci  
        run: npm ci
