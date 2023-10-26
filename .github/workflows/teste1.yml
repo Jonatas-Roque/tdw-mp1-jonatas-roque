@@ -1,36 +1,32 @@
-name: Teste_ci_lint_prettier_1
+name: Teste_ci/cd
 on: [pull_request]
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
      - uses: actions/checkout@v4
+
+     - name: Contentful
+       run: echo "${{ secrets.CONTENTFUL }}" > .env
      
      - name: Ci  
        run: npm ci
-       id: Ci
 
      - name: Lint
        run: npm run lint
-       id: Lint
     
      - name: Format  
        run: npm run format
-       id: Format
        if: success()
 
      - name: Test  
        run: npm run test
-       id: Test
        if: success()
 
      - name: Build
-       run:  npm run build
-       id: Build
-       if: success()
-    
-     - name: Deploy
-       run: npx netlify-cli deploy --site ${{ secrets.NETLIFY_SITE_ID }} --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} --prod
-       id: Deploy
+       run: npm run build
        if: success()
 
+     - name: Deploy
+       run: npx netlify-cli deploy --site ${{ secrets.NETLIFY_SITE_ID }} --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} --prod
+       if: success()

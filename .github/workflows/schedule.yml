@@ -1,14 +1,12 @@
 name: schedule workflow
 
-  # schedule:
-  #   - cron: '0 0 * * *'
-
 on:
-    branches:
-      - main
+  schedule:
+    - cron: '0 0 * * *' 
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
         - uses: actions/checkout@v4
-        - run: echo "atualiza às 00:00h"
+        - run: echo "Scheduled job at midnight (00:00)"
