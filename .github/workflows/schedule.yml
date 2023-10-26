@@ -1,11 +1,11 @@
 name: schedule workflow
 
-on:
-    branches:
-      - main
   # schedule:
   #   - cron: '0 0 * * *'
 
+on:
+    branches:
+      - main
 jobs:
   build:
     runs-on: ubuntu-latest
