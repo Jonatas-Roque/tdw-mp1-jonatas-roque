@@ -24,8 +24,9 @@ jobs:
        id: Test
        if: success()
 
-     - name: Export Contentful Data
-       run: echo "${{ secrets.CONTENTFUL }}" > .env
+     - name: Contentful
+       run: |
+          echo "${{ secrets.CONTENTFUL }}" > .env
        id: Contentful
        if: success()
 
