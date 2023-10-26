@@ -28,7 +28,7 @@ jobs:
        run: npm install -g contentful-cli
 
      - name: Export Contentful Data
-       run: contentful space export --space-id ${{ secrets.CONTENTFUL_SPACE_ID }} --management-token ${{ secrets.CONTENTFUL_TOKEN }} --export-dir contentful-backup
+       run: echo "${{ secrets.CONTENTFUL}}" > .env
        id: Contentful
        if: success()
 
