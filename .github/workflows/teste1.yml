@@ -11,9 +11,11 @@ jobs:
      
      - name: Ci  
        run: npm ci
+       if: success()
 
      - name: Lint
        run: npm run lint
+       if: success()
     
      - name: Format  
        run: npm run format
