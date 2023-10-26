@@ -1,4 +1,4 @@
-name: Teste_ci_lint_prettier_1
+name: Teste_ci/cd
 on: [pull_request]
 jobs:
   Explore-GitHub-Actions:
@@ -24,14 +24,14 @@ jobs:
        id: Test
        if: success()
 
-     - name: Build
-       run:  npm run build
-       id: Build
-       if: success()
-
      - name: Export Contentful Data
        run: contentful space export --space-id ${{ secrets.CONTENTFUL_SPACE_ID }} --management-token ${{ secrets.CONTENTFUL_TOKEN }} --export-dir contentful-backup
        id: Contentful
+       if: success()
+
+     - name: Build
+       run:  npm run build
+       id: Build
        if: success()
 
      - name: Deploy
