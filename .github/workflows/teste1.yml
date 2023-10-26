@@ -1,4 +1,4 @@
-name: Teste ci/cd
+name: Teste de ci/cd
 on: [pull_request]
 jobs:
   Explore-GitHub-Actions:
