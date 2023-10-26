@@ -5,37 +5,29 @@ jobs:
     runs-on: ubuntu-latest
     steps:
      - uses: actions/checkout@v4
-     
-     - name: Ci  
-       run: npm ci
-       id: Ci
-
-     - name: Lint
-       run: npm run lint
-       id: Lint
-    
-     - name: Format  
-       run: npm run format
-       id: Format
-       if: success()
-
-     - name: Test  
-       run: npm run test
-       id: Test
-       if: success()
 
      - name: Contentful
        run: |
           echo "${{ secrets.CONTENTFUL }}" > .env
-       id: Contentful
+     
+     - name: Ci  
+       run: npm ci
+
+     - name: Lint
+       run: npm run lint
+    
+     - name: Format  
+       run: npm run format
+       if: success()
+
+     - name: Test  
+       run: npm run test
        if: success()
 
      - name: Build
        run: npm run build
-       id: Build
        if: success()
 
      - name: Deploy
        run: npx netlify-cli deploy --site ${{ secrets.NETLIFY_SITE_ID }} --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} --prod
-       id: Deploy
        if: success()
