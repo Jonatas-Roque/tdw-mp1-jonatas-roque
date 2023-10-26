@@ -4,10 +4,8 @@ name: schedule workflow
   #   - cron: '0 0 * * *'
 
 on:
-  push:
     branches:
       - main
-
 jobs:
   build:
     runs-on: ubuntu-latest
