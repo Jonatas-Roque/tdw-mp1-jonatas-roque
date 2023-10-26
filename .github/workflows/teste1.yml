@@ -24,11 +24,8 @@ jobs:
        id: Test
        if: success()
 
-     - name: Install Contentful CLI
-       run: npm install -g contentful-cli
-
      - name: Export Contentful Data
-       run: echo "${{ secrets.CONTENTFUL}}" > .env
+       run: echo "${{ secrets.CONTENTFUL }}" > .env
        id: Contentful
        if: success()
 
