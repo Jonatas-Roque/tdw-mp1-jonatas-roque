@@ -4,8 +4,11 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-     - uses: actions/checkout@v4  
-     - run: npm ci
+     - uses: actions/checkout@v4
+     
+     - name: Ci  
+       run: npm ci
+       id: Ci
 
      - name: Lint
        run: npm run lint
@@ -30,5 +33,5 @@ jobs:
        run: npx netlify-cli deploy --site ${{ secrets.NETLIFY_SITE_ID }} --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} --prod
        id: Deploy
        if: success()
-       
+
         
