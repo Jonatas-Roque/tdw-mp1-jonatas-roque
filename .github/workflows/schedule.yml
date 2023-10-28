@@ -2,11 +2,13 @@ name: schedule workflow
 
 on:
   schedule:
-    - cron: '0 0 * * *' 
+    - cron: '0 22 * * *'
 
 jobs:
   build:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
-        - uses: actions/checkout@v4
-        - run: echo "Scheduled job at midnight (00:00)"
+      - uses: actions/checkout@v4
+      - name: Conditional Step
+        run: echo "Atualizado à meia noite de Portugal (00:00)"
