@@ -55,4 +55,12 @@ jobs:
           if [ "${{ github.ref }}" == 'refs/heads/main' ]; then
             npx netlify-cli deploy --site ${{ secrets.NETLIFY_SITE_ID }} --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} --prod
           fi
-       
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+            path: |
+              node_modules
+            key: ${{ runner.os }}-deps-${{ hashFiles('**/package-lock.json') }}
+            restore-keys: |
+              ${{ runner.os }}-deps-
