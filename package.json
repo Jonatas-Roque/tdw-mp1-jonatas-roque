@@ -16,7 +16,8 @@
     "netlify-cli": "^16.9.2",
     "next": "latest",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "react-test-renderer": "^18.2.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.1.4",
