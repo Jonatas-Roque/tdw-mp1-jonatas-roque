@@ -1,37 +1,58 @@
 name: Teste de ci/cd
-on: [pull_request]
+
+on:
+  pull_request:
+    branches:
+      - main
+      - dev
+
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
+
     steps:
-     - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-     - name: Contentful
-       run: echo "${{ secrets.ENV_FILE }}" > .env
-     
-     - name: Ci  
-       run: npm ci
-       if: success()
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
 
-     - name: Lint
-       run: npm run lint
-       if: success()
-    
-     - name: Format  
-       run: npm run format
-       if: success()
+      - name: Cache Node.js dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
-     - name: Test  
-       run: npm run test
-       if: success()
+      - name: Contentful
+        run: echo "${{ secrets.ENV_FILE }}" > .env
 
-     - name: Build
-       run: npm run build
-       if: success()
+      - name: Ci
+        run: npm ci
+        if: success()
 
-     - name: Deploy
-       run: |
-          if [ "${{ steps.branch-check.outputs.branch }}" == 'main' ]; then
+      - name: Lint
+        run: npm run lint
+        if: success()
+
+      - name: Format
+        run: npm run format
+        if: success()
+
+      - name: Test
+        run: npm run test
+        if: success()
+
+      - name: Build
+        run: npm run build
+        if: success()
+
+      - name: Deploy
+        run: |
+          if [ "${{ github.ref }}" == 'refs/heads/main' ]; then
             npx netlify-cli deploy --site ${{ secrets.NETLIFY_SITE_ID }} --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} --prod
           fi
        
