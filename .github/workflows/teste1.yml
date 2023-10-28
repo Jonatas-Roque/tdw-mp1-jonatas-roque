@@ -30,5 +30,8 @@ jobs:
        if: success()
 
      - name: Deploy
-       run: npx netlify-cli deploy --site ${{ secrets.NETLIFY_SITE_ID }} --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} --prod
-       if: success()
+       run: |
+          if [ "${{ steps.branch-check.outputs.branch }}" == 'main' ]; then
+            npx netlify-cli deploy --site ${{ secrets.NETLIFY_SITE_ID }} --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} --prod
+          fi
+       
