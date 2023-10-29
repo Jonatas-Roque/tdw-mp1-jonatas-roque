@@ -6,8 +6,8 @@ describe('Header', () => {
   it('O header é carregado com o meu nome', () => {
     render(<Intro />)
  
-    const footer = screen.getByText('Blog do Jónatas.')
-    expect(footer).toBeInTheDocument();
+    const nome = screen.getByText('Blog do Jónatas.')
+    expect(nome).toBeInTheDocument();
  
   })
 })
