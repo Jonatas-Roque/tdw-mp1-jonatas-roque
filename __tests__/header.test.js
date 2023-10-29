@@ -3,7 +3,7 @@ import '@testing-library/jest-dom'
 import Header from '../components/header'
  
 describe('Header', () => {
-  it('renders a heading', () => {
+  it('Faz render do header', () => {
     render(<Header />)
  
     const heading = screen.getByText('Blog do Jónatas')
