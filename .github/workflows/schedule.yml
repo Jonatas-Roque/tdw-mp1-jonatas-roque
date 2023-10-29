@@ -10,5 +10,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Conditional Step
+      - name: Verificação
         run: echo "Atualizado à meia noite de Portugal (00:00h)"
