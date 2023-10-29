@@ -2,7 +2,7 @@ name: schedule workflow
 
 on:
   schedule:
-    - cron: '0 22 * * *'
+    - cron: '0 23 * * *'
 
 jobs:
   build:
@@ -11,4 +11,4 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Conditional Step
-        run: echo "Atualizado à meia noite de Portugal (00:00)"
+        run: echo "Atualizado à meia noite de Portugal (00:00h)"
